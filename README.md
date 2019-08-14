@@ -16,7 +16,7 @@ As instruções detalhadas sobre o projeto são estabelecidas na apresentação 
 9 - Layout e Componentes de Características Distribuídas: Onias
 
 ## Diagrama de Blocos Preliminar
-![Diagrama de Blocos com Especificações de Projeto](RX-APCT)
+![Diagrama de Blocos com Especificações de Projeto](RX-APCT.png)
 
 ## Simulação em AWR
 
