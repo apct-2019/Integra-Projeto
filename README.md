@@ -6,13 +6,21 @@ As instruções detalhadas sobre o projeto são estabelecidas na apresentação 
 
 ## Divisão de tarefas
 1 - Antena: Mariana
+
 2 - Filtros: Nicolas Oliveira
+
 3 - Atenuadores: Mendes
+
 4 - LNA/Gain Block: Arturo
+
 5 - Mixer: Sampaio
+
 6 - Oscilador Local: Bacelar
+
 7 - Conversor A/D e Firmware: Aquino
+
 8 - Integração do Projeto: João Carvalho
+
 9 - Layout e Componentes de Características Distribuídas: Onias
 
 ## Diagrama de Blocos Preliminar
