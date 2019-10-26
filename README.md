@@ -57,4 +57,5 @@ O projeto com as simulações se encontra neste repositório e, para mudar a pot
 * Devido ao atenuador na entrada, têm-se um grande aumento na figura de ruído do circuito para situações de alta potência de entrada. Porém, através das simulações podemos ver que o maior valor é de 56.23dB, para um sinal com 0dBm de potência, o que ainda permite ter uma SNR aceitável;
 * O Mixer selecionado apresenta uma boa operação para a potência de entrada LO=+13dBm. Por isto, a potência do sintetizador deve ser ajustada para atender tal valor;
 * A FI foi selecionada para 455kHz para atender a capacidade de amostragem do microcontrolador e evitar que sinais de canais indesejados interfiram na comunicação do canal de interesse;
-* Com o ajuste da potência de entrada do Mixer, ajusta-se também a potência de entrada no microcontrolador, que pode ter seu pico em até 20.9dBm (2.5V, para Z=50ohms). Para isto, utiliza-se um circuito elevador de tensão para gerando um offset de 1.25V.
+* Com o ajuste da potência de entrada do Mixer, ajusta-se também a potência de entrada no microcontrolador, que pode ter seu pico em até 20.9dBm (2.5V, para Z=50ohms). Para isto, utiliza-se um circuito elevador de tensão para gerando um offset de 1.25V;
+* O consumo total do circuito foi calculado em 1.7W.
