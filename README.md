@@ -45,5 +45,5 @@ As descrições detalhadas de cada bloco do projeto pode ser vistas nos seguinte
 * Com o ajuste da potência de entrada do Mixer, ajusta-se também a potência de entrada no microcontrolador, que pode ter seu pico em até 20.9dBm (2.5V, para Z=50ohms). Para isto, utiliza-se um circuito elevador de tensão para gerando um offset de 1.25V.
 
 ## Simulações em AWR
-![Estágios do ganho e Figura de ruído](power-stages.png)
-![Espectro de potência do sinal](pwr-spec.png)
+![Estágios do ganho e Figura de ruído](power-stages.PNG)
+![Espectro de potência do sinal](pwr-spec.PNG)
