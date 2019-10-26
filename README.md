@@ -40,7 +40,7 @@ As descrições detalhadas de cada bloco do projeto pode ser vistas nos seguinte
 ## Simulações em AWR
 As simulações a seguir mostram, respectivamente:
 * A potência do sinal (em rosa) e a figura de ruído (em azul), a cada estágio do repector, da antena à entrada do mixer, para um sinal com potência de 0dBm;
-* O espectro de potência do sinal na saída do filtro de canal, para uma potência de entrada de 0dBm.
+* O espectro de potência do sinal na saída do filtro de canal, para um sinal de entrada em 125MHz, com dois tons de 1kHz e potência de 0dBm.
 ![Estágios do ganho e Figura de ruído](power-stages.PNG)
 ![Espectro de potência do sinal](pwr-spec.PNG)
 
@@ -56,7 +56,7 @@ O projeto com as simulações se encontra neste repositório e, para mudar a pot
 ### Ajuste das Potências
 * Com esta cadeia de recepção, nenhum dos amplificadores está em região de saturação, ou seja, suas potências de saída estão abaixo do P1dB e distantes do OIP3;
 * O Mixer selecionado apresenta uma boa operação para a potência de entrada LO=+13dBm. Por isto, a potência do sintetizador deve ser ajustada para atender tal valor;
-* Com a configuração apresentada, o sinal após o filtro tem -12.76dBm de potência;
+* Com a configuração apresentada, o sinal após o filtro teria, idealmente, -18.7dBm de potência;
 * Ajusta-se também a potência de entrada no microcontrolador, que pode ter seu pico em até 20.9dBm (2.5V, para Z=50ohms). Para isto, utiliza-se um circuito elevador de tensão para gerando um offset de 1.25V;
 ### Frequência intermediária
 * A FI foi selecionada para 455kHz para atender a capacidade de amostragem do microcontrolador e evitar que sinais de canais indesejados interfiram na comunicação do canal de interesse;
