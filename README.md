@@ -7,11 +7,11 @@ O projeto deve seguir as seguintes especificações:
 As instruções detalhadas sobre o projeto são estabelecidas [nesta apresentação](Trabalhos.pdf)
 
 ## Descrição do projeto
-A cadeia de recepção terá sua arquitetura baseada em receptores super-heteródinos e deve ser capaz de detectar sinais de voz a partir de 0dBu (equivalente a -106.5dBm em potência) na faixa de 108 a 137MHz. Com uma frequência intermediária de 455kHz, o usuário será capaz de selecionar entre bandas de largura 3kHz, com um espaçamento de 8.33kHz, ou bandas de 7.5kHz com espaçamentos de 25kHz.
+A cadeia de recepção tem sua arquitetura baseada em receptores heteródinos e deve ser capaz de detectar sinais de voz a partir de 0dBu (equivalente a -106.5dBm em potência) na faixa de 108 a 137MHz. Com uma frequência intermediária de 455kHz, o usuário é capaz de selecionar entre bandas de largura 3kHz, com um espaçamento de 8.33kHz, ou bandas de 7.5kHz com espaçamentos de 25kHz.
 
-O sinal será entregue a um microcontrolador STM32F407VGT6 para demodulação e, em seguida, envio para as saídas de áudio. A potência de entrada do sinal será ajustada através de um controlador PID, implementado no mesmo microncontrolador, que se comunicará através de protocolo SPI com um atenuador e 3 amplificadores de ganho variável, podendo variar o ganho do circuito em até 91dB. A malha de ajuste do ganho deve garantir uma potência de 10dBm para a entrada do Mixer.
+O sinal é entregue a um microcontrolador STM32F407VGT6 para demodulação e, em seguida, envio para as saídas de áudio. A potência de entrada do sinal será ajustada através de um controlador PID, implementado no mesmo microncontrolador, que se comunica através de protocolo SPI com 4 atenuadores variáveis. A malha de ajuste automático do ganho deve garantir uma potência de -28dBm para a entrada do Mixer.
 
-O microcontrolador também fará o ajuste da potência de saída do sintetizador, através de protocolo SPI, e deve ter a frequência de amostragem do seu conversor A/D configurada para um valor que atenda ao critério de Nyquist para a demodulação (>=2FI). O ajuste da potência deve garantir que o sintetizador entregue 13dBm para o Mixer.
+O microcontrolador também fará o ajuste da potência de saída do sintetizador, através de protocolo SPI, e deve ter a frequência de amostragem do seu conversor A/D configurada para um valor que atenda ao critério de Nyquist para a demodulação (>=2FI). O ajuste da potência deve garantir que o sintetizador entregue 7dBm para o Mixer.
 
 ## Divisão de tarefas
 As descrições detalhadas de cada bloco do projeto pode ser vistas nos seguintes repositórios:
@@ -34,10 +34,16 @@ As descrições detalhadas de cada bloco do projeto pode ser vistas nos seguinte
 
 9 - Layout e Componentes de Características Distribuídas: [Onias](https://github.com/apct-2019/Onias)
 
-## Diagrama de Blocos Preliminar
+## Diagrama de Blocos
 ![Diagrama de Blocos com Especificações de Projeto](RX-APCT.png)
 
 ## Parâmetros Críticos
-* O Mixer selecionado apresenta uma boa operação para as potências de entrada: RF=+10dBm e LO=+13dBm. Por isto, as potências do sintetizador e dos blocos de ganho devem ser ajustadas para atender tais valores.
-* A FI foi selecionada para 455kHz para atender a capacidade de amostragem do microcontrolador e reduzir os efeitos dos acoplamentos indesejados do Mixer.
-* Com o ajuste da potência de entrada do Mixer, ajusta-se também a potência de entrada no microcontrolador, que pode ter seu pico em até 20.9dBm (2.5V, para Z=50ohms). Para isto, utiliza-se um circuito elevador de tensão para gerando um offset de 1.25V. 
+* Com esta cadeia de recepção, nenhum dos amplificadores está em região de saturação, ou seja, suas potências de saída estão abaixo do P1dB e distantes do OIP3;
+* Devido ao atenuador na entrada, têm-se um grande aumento na figura de ruído do circuito para situações de alta potência de entrada. Porém, através das simulações podemos ver que, mesmo alto, ainda é um valor aceitável;
+* O Mixer selecionado apresenta uma boa operação para a potência de entrada LO=+13dBm. Por isto, a potência do sintetizador deve ser ajustada para atender tal valor;
+* A FI foi selecionada para 455kHz para atender a capacidade de amostragem do microcontrolador e evitar que sinais de canais indesejados interfiram na comunicação do canal de interesse;
+* Com o ajuste da potência de entrada do Mixer, ajusta-se também a potência de entrada no microcontrolador, que pode ter seu pico em até 20.9dBm (2.5V, para Z=50ohms). Para isto, utiliza-se um circuito elevador de tensão para gerando um offset de 1.25V.
+
+## Simulações em AWR
+![Estágios do ganho e Figura de ruído](power-stages.png)
+![Espectro de potência do sinal](pwr-spec.png)
