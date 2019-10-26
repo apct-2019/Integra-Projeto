@@ -45,5 +45,16 @@ As descrições detalhadas de cada bloco do projeto pode ser vistas nos seguinte
 * Com o ajuste da potência de entrada do Mixer, ajusta-se também a potência de entrada no microcontrolador, que pode ter seu pico em até 20.9dBm (2.5V, para Z=50ohms). Para isto, utiliza-se um circuito elevador de tensão para gerando um offset de 1.25V.
 
 ## Simulações em AWR
+As simulações a seguir mostram, respectivamente:
+* A potência do sinal (em rosa) e a figura de ruído (em azul), a cada estágio do repector, da antena à entrada do mixer, para um sinal com potência de 0dBm;
+* O espectro de potência do sinal na saída do filtro de canal, para uma potência de entrada de 0dBm.
 ![Estágios do ganho e Figura de ruído](power-stages.PNG)
 ![Espectro de potência do sinal](pwr-spec.PNG)
+
+Nas simulações, o ajuste automático das atenuações foi calculado feito da seguinte forma:
+* Todos os atenuadores recebem o mesmo sinal "ctrl" como parâmetros para a atenuação, assim o mesmo sinal de SPI pode ser usado para configurar todos. Este valor indica quantos passos de atenuações devem ser utilizados;
+* Para uma potência de entrada, chamemos de Pin, de -106dBm, deseja-se ter 0 de atenuação. Idealmente, isto leva a um sinal com -29.4dBm de potência na entrada do mixer;
+* Para uma potência de entrada de 0dBm (especificado como o limite deste projeto), deseja-se que a potência entregue ao mixer também seja de -29.4dBm, o que implica em atenuações de 26.5dBm;
+* Com isto, pode-se fazer uma "regra de 3" para chegar a conclusão que: ctrl = 0.5\*Pin+68
+
+O projeto com as simulações se encontra neste repositório e, para mudar a potência de entrada do circuito, basta alterar o parâmetro Pin_dBm, que está na equação do "System Diagram": RX_diagrama
