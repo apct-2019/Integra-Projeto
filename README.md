@@ -53,9 +53,15 @@ Nas simulações, o ajuste automático das atenuações foi calculado feito da s
 O projeto com as simulações se encontra neste repositório e, para mudar a potência de entrada do circuito, basta alterar o parâmetro Pin_dBm, que está na equação do "System Diagram": RX_diagrama
 
 ## Parâmetros Críticos
+### Ajuste das Potências
 * Com esta cadeia de recepção, nenhum dos amplificadores está em região de saturação, ou seja, suas potências de saída estão abaixo do P1dB e distantes do OIP3;
-* Devido ao atenuador na entrada, têm-se um grande aumento na figura de ruído do circuito para situações de alta potência de entrada. Porém, através das simulações podemos ver que o maior valor é de 56.23dB, para um sinal com 0dBm de potência, o que ainda permite ter uma SNR aceitável;
 * O Mixer selecionado apresenta uma boa operação para a potência de entrada LO=+13dBm. Por isto, a potência do sintetizador deve ser ajustada para atender tal valor;
+* Com a configuração apresentada, o sinal após o filtro tem -12.76dBm de potência;
+* Ajusta-se também a potência de entrada no microcontrolador, que pode ter seu pico em até 20.9dBm (2.5V, para Z=50ohms). Para isto, utiliza-se um circuito elevador de tensão para gerando um offset de 1.25V;
+### Frequência intermediária
 * A FI foi selecionada para 455kHz para atender a capacidade de amostragem do microcontrolador e evitar que sinais de canais indesejados interfiram na comunicação do canal de interesse;
-* Com o ajuste da potência de entrada do Mixer, ajusta-se também a potência de entrada no microcontrolador, que pode ter seu pico em até 20.9dBm (2.5V, para Z=50ohms). Para isto, utiliza-se um circuito elevador de tensão para gerando um offset de 1.25V;
-* O consumo total do circuito foi calculado em 1.7W.
+### Consumo
+* O consumo total do circuito foi calculado em aproximadamente 1.72W, já considerando os consumos dos reguladores de tensão de cada componente.
+### Relação Sinal Ruído
+* P/ um sinal com 0dBm de potência, temos uma figura de ruído de 56.24dBm. Considerando um ruído térmico com -120dBm, temos: SNR = 63.76dBm
+* P/ um sinal com -100dBm de potência, temos uma figura de ruído de 10.15dBm. Considerando um ruído térmico com -120dBm, temos: SNR = 9.85dBm -> O receptor apresenta dificuldade para demodular sinais com potência abaixo de -100dBm;
